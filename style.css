@@ -193,6 +193,66 @@ body {
     z-index: 1000;
 }
 
+/* ── Back-swipe edge hint ── */
+.back-edge-hint {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    padding: 20px 16px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+    opacity: 0;
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        color 0.25s ease;
+    user-select: none;
+}
+
+.back-edge-hint svg {
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+
+.back-edge-hint.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.back-edge-hint.ready {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.back-edge-hint.ready svg {
+    transform: translateX(-3px);
+}
+
+/* Slide-out-left dismissal */
+@keyframes slideOutLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-6vw);
+        opacity: 0;
+    }
+}
+
+.log-container.dismissing {
+    animation: slideOutLeft 0.38s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+.activity-container.dismissing {
+    animation: slideOutLeft 0.38s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
 .modal-overlay#logModal {
     z-index: 2000;
 }
@@ -757,10 +817,34 @@ body {
 .log-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     margin-bottom: 4rem;
     border-bottom: 1px solid #111;
     padding-bottom: 1.5rem;
+}
+
+.log-header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.log-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--dim-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    outline: none;
+}
+
+.log-close-btn:hover {
+    color: var(--fg-color);
+    transform: rotate(90deg);
 }
 
 .log-header h2 {

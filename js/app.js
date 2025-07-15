@@ -19,13 +19,22 @@ chartBtn.addEventListener('click', () => {
     renderTimeline();
     activityModal.classList.add('show');
     activityNav.classList.remove('show');
+    setBackSwipeModal(activityModal);
 });
+
 
 logBtn.addEventListener('click', () => {
     if (state.isRunning) toggleTimer();
     renderSessionLog();
     logModal.classList.add('show');
+    setBackSwipeModal(logModal);
 });
+
+document.getElementById('logCloseBtn').addEventListener('click', () => {
+    logModal.classList.remove('show');
+    setBackSwipeModal(null);
+});
+
 
 activityDate.addEventListener('click', () => {
     activityNav.classList.toggle('show');
