@@ -30,7 +30,8 @@ logBtn.addEventListener('click', () => {
     setBackSwipeModal(logModal);
 });
 
-document.getElementById('logCloseBtn').addEventListener('click', () => {
+document.getElementById('logCloseBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
     logModal.classList.remove('show');
     setBackSwipeModal(null);
 });
