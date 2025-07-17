@@ -823,27 +823,6 @@ body {
     padding-bottom: 1.5rem;
 }
 
-.log-close-btn {
-    position: absolute;
-    top: 2.5rem;
-    right: 2.5rem;
-    background: transparent;
-    border: none;
-    color: var(--dim-color);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-    z-index: 10;
-    transition: color 0.3s ease, transform 0.3s ease;
-    outline: none;
-}
-
-.log-close-btn:hover {
-    color: var(--fg-color);
-    transform: rotate(90deg);
-}
 
 .log-header h2 {
     font-size: 0.8rem;
