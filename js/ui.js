@@ -90,6 +90,12 @@ function setBackSwipeModal(modal) {
     }
 }
 
+// Make the back/swipe hint clickable for users who use a mouse and see the arrow
+backEdgeHint.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dismissWithSwipe();
+});
+
 function dismissWithSwipe() {
     if (backSwipeDismissing || !backSwipeModal) return;
     backSwipeDismissing = true;
@@ -99,6 +105,12 @@ function dismissWithSwipe() {
     const inner = backSwipeModal.querySelector(
         '.log-container, .activity-container, .modal-content'
     );
+
+    // Check if activityModal is the one under
+    const wasLogModal = backSwipeModal.id === 'logModal';
+    const activityModalElem = document.getElementById('activityModal');
+    const isActivityStillOpen = activityModalElem && activityModalElem.classList.contains('show');
+
     if (inner) {
         inner.classList.add('dismissing');
         inner.addEventListener('animationend', () => {
@@ -106,11 +118,20 @@ function dismissWithSwipe() {
             backSwipeModal.classList.remove('show');
             noteEditor.classList.remove('show');
             activityNav.classList.remove('show');
-            setBackSwipeModal(null);
+
+            if (wasLogModal && isActivityStillOpen) {
+                setBackSwipeModal(activityModalElem);
+            } else {
+                setBackSwipeModal(null);
+            }
         }, { once: true });
     } else {
         backSwipeModal.classList.remove('show');
-        setBackSwipeModal(null);
+        if (wasLogModal && isActivityStillOpen) {
+            setBackSwipeModal(activityModalElem);
+        } else {
+            setBackSwipeModal(null);
+        }
     }
 }
 

@@ -205,7 +205,8 @@ body {
     padding: 20px 16px;
     background: transparent;
     color: rgba(255, 255, 255, 0.25);
-    pointer-events: none;
+    pointer-events: auto;
+    cursor: pointer;
     opacity: 0;
     transition:
         opacity 0.35s ease,
