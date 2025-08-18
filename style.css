@@ -100,12 +100,37 @@ body {
     margin-bottom: 4rem;
     font-variant-numeric: tabular-nums;
     text-align: center;
+    cursor: pointer;
+    transition: margin-bottom 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (min-width: 1024px) {
     .timer {
         font-size: 10rem;
     }
+}
+
+/* Mini Mode */
+body.mini-mode .settings-btn,
+body.mini-mode .chart-btn,
+body.mini-mode .mode-text,
+body.mini-mode .controls-wrapper,
+body.mini-mode .dots {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body:not(.mini-mode) .settings-btn,
+body:not(.mini-mode) .chart-btn,
+body:not(.mini-mode) .mode-text,
+body:not(.mini-mode) .controls-wrapper,
+body:not(.mini-mode) .dots {
+    transition: opacity 0.4s ease;
+}
+
+body.mini-mode .timer {
+    margin-bottom: 0;
+    transform: scale(1.15);
 }
 
 .controls-wrapper {

@@ -83,6 +83,7 @@ function restartTimer() {
 }
 
 function handleTimerComplete() {
+    document.body.classList.remove('mini-mode');
     clearInterval(state.timerId);
     state.isRunning = false;
     mainIcon.innerHTML = playSVG;

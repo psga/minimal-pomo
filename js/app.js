@@ -141,6 +141,17 @@ activityChartWrapper.addEventListener('mouseleave', resetZoom);
 mainBtn.addEventListener('click', toggleTimer);
 restartBtn.addEventListener('click', restartTimer);
 
+timerDisplay.addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.body.classList.toggle('mini-mode');
+});
+
+document.body.addEventListener('click', (e) => {
+    if (document.body.classList.contains('mini-mode') && e.target !== timerDisplay) {
+        document.body.classList.remove('mini-mode');
+    }
+});
+
 testSoundBtn.addEventListener('click', () => {
     const selectedOption = soundSelectOptions.querySelector('.select-option.selected');
     if (selectedOption) {
