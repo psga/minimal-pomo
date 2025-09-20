@@ -83,6 +83,7 @@ saveBtn.addEventListener('click', () => {
     };
     saveConfig();
     settingsModal.classList.remove('show');
+    renderDots();
     restartTimer();
 });
 
