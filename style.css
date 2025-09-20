@@ -34,7 +34,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease, opacity 0.4s ease;
     outline: none;
 }
 
@@ -81,7 +81,7 @@ body {
     color: var(--dim-color);
     margin-bottom: 2rem;
     text-transform: uppercase;
-    transition: color 0.5s ease;
+    transition: color 0.5s ease, opacity 0.4s ease;
 }
 
 .mode-text.focus {
@@ -120,13 +120,7 @@ body.mini-mode .dots {
     pointer-events: none;
 }
 
-body:not(.mini-mode) .settings-btn,
-body:not(.mini-mode) .chart-btn,
-body:not(.mini-mode) .mode-text,
-body:not(.mini-mode) .controls-wrapper,
-body:not(.mini-mode) .dots {
-    transition: opacity 0.4s ease;
-}
+/* Removed body:not(.mini-mode) override to prevent transition conflicts */
 
 body.mini-mode .timer {
     margin-bottom: 0;
@@ -138,6 +132,7 @@ body.mini-mode .timer {
     width: 160px;
     height: 80px;
     margin-bottom: 4rem;
+    transition: opacity 0.4s ease;
 }
 
 .btn-main,
@@ -185,6 +180,7 @@ body.mini-mode .timer {
     display: flex;
     gap: 1rem;
     justify-content: center;
+    transition: opacity 0.4s ease;
 }
 
 .dot {
@@ -890,7 +886,7 @@ body.mini-mode .timer {
     /* Chrome, Safari, Opera */
 }
 
-Riverside .log-day {
+.log-day {
     margin-bottom: 4rem;
 }
 
