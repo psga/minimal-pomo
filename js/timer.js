@@ -59,10 +59,17 @@ function toggleTimer() {
             state.currentSessionStart = Date.now();
         }
 
+        // Calculate absolute end time to prevent background throttling
+        state.endTime = Date.now() + state.timeLeft * 1000;
+
         state.timerId = setInterval(() => {
-            state.timeLeft--;
-            if (state.timeLeft <= 0) handleTimerComplete();
-            else updateDisplay();
+            state.timeLeft = Math.round((state.endTime - Date.now()) / 1000);
+            if (state.timeLeft <= 0) {
+                state.timeLeft = 0;
+                handleTimerComplete();
+            } else {
+                updateDisplay();
+            }
         }, 1000);
     }
 }
@@ -120,3 +127,16 @@ function handleTimerComplete() {
         if (state.config.autoFocus) setTimeout(toggleTimer, 800);
     }
 }
+
+// Handle extreme throttling when the tab is completely hidden
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && state.isRunning) {
+        state.timeLeft = Math.round((state.endTime - Date.now()) / 1000);
+        if (state.timeLeft <= 0) {
+            state.timeLeft = 0;
+            handleTimerComplete();
+        } else {
+            updateDisplay();
+        }
+    }
+});

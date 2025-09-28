@@ -69,6 +69,7 @@ const state = {
     },
     currentMode: MODE_FOCUS,
     timeLeft: 25 * 60,
+    endTime: null,
     timerId: null,
     isRunning: false,
     completedPomodoros: 0,
